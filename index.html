@@ -1,0 +1,708 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PriiiAiVerse Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Fira Code', monospace;
+      background: #0d0d0d;
+      color: #f5f5f5;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: radial-gradient(circle, #1a1a1a, #0d0d0d);
+      text-align: center;
+    }
+    h1 { font-size: 3rem; }
+    .typing {
+      color: #00ffc3;
+      font-size: 1.2rem;
+      border-right: 2px solid #00ffc3;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 4s steps(30, end) forwards, blink 0.75s step-end infinite;
+    }
+    @keyframes typing {
+      to { width: 100%; }
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+    section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    h2 {
+      margin-bottom: 2rem;
+      color: #00ffc3;
+      font-size: 2.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    h2::before {
+      content: "";
+      position: absolute;
+      left: -80px;
+      top: 50%;
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(to right, #00ffc3, transparent);
+    }
+    h2::after {
+      content: "✈";
+      position: absolute;
+      left: -100px;
+      top: 42%;
+      font-size: 1.5rem;
+      animation: fly 1s infinite ease-in-out alternate;
+    }
+    @keyframes fly {
+      0% { transform: translateX(0) rotate(0); }
+      100% { transform: translateX(15px) rotate(10deg); }
+    }
+    .about-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+      justify-content: space-between;
+    }
+    .about-img {
+      flex: 1;
+      min-width: 280px;
+      display: flex;
+      justify-content: center;
+    }
+    .about-img .photo-card {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 1rem;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 0 30px rgba(0, 255, 195, 0.1);
+      border: 1px solid rgba(0, 255, 195, 0.2);
+    }
+    .about-img img {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #00ffc3;
+      box-shadow: 0 0 30px rgba(0, 255, 195, 0.4);
+    }
+    .about-text {
+      flex: 2;
+    }
+    .social-icons {
+      margin-top: 2rem;
+      text-align: center;
+    }
+    .social-icons a {
+      margin: 0 15px;
+      color: #00ffc3;
+      font-size: 2rem;
+      transition: transform 0.3s, color 0.3s;
+    }
+    .social-icons a:hover {
+      transform: scale(1.2);
+      color: #ffffff;
+    }
+    .learn-more-section {
+      text-align: center;
+      margin-top: 4rem;
+    }
+    .learn-more-section h3 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      color: #ffffff;
+    }
+    .feature-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+    .feature-buttons a {
+      background: linear-gradient(135deg, #00ffc3, #0066ff);
+      color: #000;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 5px 15px rgba(0, 255, 195, 0.3);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .feature-buttons a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(0, 255, 195, 0.5);
+    }
+    .domain {
+  margin-top: 3rem;
+    }
+
+.domain h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #00ffc3;
+}
+
+.project-boxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.project-card {
+  flex: 1 1 250px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1.5rem;
+  border-radius: 20px;
+  box-shadow: 0 0 15px rgba(0, 255, 195, 0.1);
+  border: 1px solid rgba(0, 255, 195, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  color: #fff;
+}
+
+.project-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(0, 255, 195, 0.3);
+}
+.research-card {
+  background: #111;
+  border: 1px solid #00ffc3;
+  border-radius: 15px;
+  padding: 2rem;
+  margin-top: 1rem;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 255, 195, 0.3);
+}
+
+.research-card h3 {
+  color: #00ffc3;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.research-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.research-card p {
+  margin: 0.5rem 0;
+}
+
+.research-links a {
+  display: inline-block;
+  margin: 1rem 0.5rem 0;
+  padding: 0.5rem 1rem;
+  background-color: #00ffc3;
+  color: #000;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.research-links a:hover {
+  background-color: #00c1a2;
+}
+.experience-tags {
+  margin: 1rem 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.tag,
+.tag-link {
+  background-color: rgba(0, 255, 195, 0.1);
+  border: 1px solid #00ffc3;
+  color: #00ffc3;
+  padding: 0.6rem 1.2rem;
+  border-radius: 15px;
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(0, 255, 195, 0.2);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.tag-link:hover {
+  background-color: #00ffc3;
+  color: #000;
+  box-shadow: 0 0 20px rgba(0, 255, 195, 0.5);
+}
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  padding-top: 2rem;
+}
+
+.skill-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 195, 0.2);
+  box-shadow: 0 0 15px rgba(0, 255, 195, 0.1);
+  border-radius: 20px;
+  padding: 1.5rem;
+  max-width: 300px;
+  text-align: center;
+  flex: 1 1 300px;
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-5px);
+}
+
+.skill-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #00ffc3;
+  background-color: white;
+  padding: 5px;
+  margin-bottom: 1rem;
+}
+
+.skill-card h4 {
+  font-size: 1.2rem;
+  color: #00ffc3;
+  margin-bottom: 0.5rem;
+}
+
+.skill-card p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #ddd;
+}
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+      color: #888;
+    }
+    a { color: #00ffc3; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body><header>
+  <h1>PriiiAiVerse</h1>
+  <div class="typing"> Data Analyst • AI/ML Practitioner • Developer</div>
+</header><section id="about">
+  <h2>About Me</h2>
+  <div class="about-section">
+    <div class="about-img">
+      <div class="photo-card">
+        <img src="C:\Users\Dell\OneDrive\Desktop\img\Untitled1111.jpg" alt="Your Photo">
+      </div>
+    </div>
+    <div class="about-text">
+     <div style="background-color: #0e0e0e; color: #e0e0e0; padding: 30px 40px; border-radius: 10px; max-width: 900px; margin: 0 auto; font-family: 'Segoe UI', sans-serif;">
+  
+  <h1 style="font-size: 2.2em; color: #00ffc3; margin-bottom: 10px; font-weight: 700;">
+    Priti Kumari
+  </h1>
+  
+  <p style="font-size: 1.1em; margin: 0 0 8px 0; color: #e0e0e0;">
+    | Data Analyst & AI/ML Practitioner 
+  </p>
+
+
+<section style="background-color: #0e0e0e; color: #e0e0e0; font-family: 'Segoe UI', sans-serif; padding: 40px; max-width: 900px; margin: auto; border-radius: 8px;">
+  
+  <p style="margin-bottom: 1.2em;">
+    I am a <strong>Computer Science student</strong> with a specialization in <strong>AI/ML</strong>, bringing strong hands-on experience in 
+    <strong>data analysis</strong>, <strong>visualization</strong>, and <strong>machine learning</strong>.
+  </p>
+
+  <p style="margin-bottom: 1.2em;">
+    I work extensively with <strong>Python, SQL, and Excel</strong> for data wrangling, statistical analysis, and 
+    <strong>exploratory data analysis (EDA)</strong>. I also use <strong>Power BI, Tableau, Matplotlib</strong>, and <strong>Seaborn</strong> 
+    to build dashboards and reports that communicate data insights effectively.
+  </p>
+
+  <p style="margin-bottom: 1.2em;">
+    My machine learning work includes developing predictive models using <strong>scikit-learn</strong> and <strong>XGBoost</strong>, performing <strong>A/B testing</strong>, 
+    and tuning models for real-world impact. I'm getting familiar with <strong>end-to-end pipelines</strong>, <strong>ETL processes</strong>, and integrating multiple data sources.
+  </p>
+
+  <p style="margin-bottom: 1.2em;">
+    Exploring <strong>deep learning</strong> ,<strong>natural language processing (NLP)</strong>, <strong>large language model </strong>, with projects involving 
+    <strong>chatbot development</strong>, <strong>text summarization</strong>, and <strong>FastAPI-based deployment</strong>. This includes work with transformer models,vector databases, and embedding-based pipelines.
+  </p>
+
+  <p>
+    I focus on connecting technical solutions with real-world outcomes through <strong>clean analysis</strong>, <strong>visual storytelling</strong>, 
+    and building <strong>scalable data workflows</strong>.
+  </p>
+</section>
+
+  </div>
+  <div class="social-icons">
+    <a href="mailto:your.email@example.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a>
+    <a href="https://github.com/PriiiAiVerse" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+    <a href="https://www.linkedin.com/in/priti-kumari-651107355/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+  </div>
+  <div class="learn-more-section">
+    <h3>Learn more about my:</h3>
+    <div class="feature-buttons">
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#research">Research</a>
+     
+      <a href="#resume">Resume</a>
+      <a href="#hobbies">Hobbies</a>
+    </div>
+  </div>
+</section><section id="skills">
+<h2>Skills</h2>
+
+<!-- Data Analysis -->
+<h3> Data Analysis</h3>
+<div class="skills-grid">
+
+  <div class="skill-card">
+    <img src="https://img.icons8.com/color/96/000000/python.png" alt="Python" />
+    <h4>Python</h4>
+    <p>Used for data cleaning, EDA, automation, and visualization using Pandas, NumPy, and Matplotlib.</p>
+  </div>
+
+  <div class="skill-card">
+    <img src="https://img.icons8.com/ios-filled/100/sql.png" alt="SQL" />
+    <h4>SQL</h4>
+    <p>Skilled in complex queries, joins, CTEs, and data manipulation from relational databases.</p>
+  </div>
+
+  <div class="skill-card">
+    <img src="https://img.icons8.com/color/96/000000/microsoft-excel-2019--v1.png" alt="Excel" />
+    <h4>Excel</h4>
+    <p>Experienced with PivotTables, VLOOKUP, formulas, charts, and dashboards.</p>
+  </div>
+
+  <div class="skill-card">
+    <img src="https://img.icons8.com/color/96/power-bi.png" alt="Power BI" />
+    <h4>Power BI</h4>
+    <p>Created interactive dashboards and reports using DAX and Power Query Editor.</p>
+  </div>
+
+  <div class="skill-card">
+    <img src="https://img.icons8.com/color/96/tableau-software.png" alt="Tableau" />
+    <h4>Tableau</h4>
+    <p>Built visualizations and story dashboards for business decision-making.</p>
+  </div>
+
+  <div class="skill-card">
+    <img src="https://img.icons8.com/ios-filled/100/code.png" alt="ETL/EDA" />
+    <h4>ETL & EDA</h4>
+    <p>Performed data extraction, transformation, and detailed exploratory analysis.</p>
+  </div>
+</div>
+
+<!-- Machine Learning -->
+<!-- Machine Learning (Concise but Rich) -->
+<h3> Machine Learning</h3>
+<div class="skills-grid">
+
+  <div class="skill-card">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="Scikit-learn" />
+    <h4>Scikit-learn</h4>
+    <p>Used for implementing supervised and unsupervised models with preprocessing and evaluation tools.</p>
+  </div>
+
+  <div class="skill-card">
+    <img src="https://img.icons8.com/ios-filled/100/decision.png" alt="Classification" />
+    <h4>Classification & Regression</h4>
+    <p>Worked on Logistic Regression, Decision Trees, and Linear Regression in real projects.</p>
+  </div>
+
+  <div class="skill-card">
+    <img src="https://img.icons8.com/ios-filled/100/statistics.png" alt="Evaluation" />
+    <h4>Model Evaluation</h4>
+    <p>Used ROC-AUC, Confusion Matrix, F1-Score, MAE, RMSE for model validation.</p>
+  </div>
+</div>
+
+
+<!-- Deep Learning -->
+<h3> Deep Learning</h3>
+<div class="skills-grid">
+
+
+  <div class="skill-card">
+    <img src="https://img.icons8.com/color/96/tensorflow.png" alt="TensorFlow" />
+    <h4>TensorFlow / Keras</h4>
+    <p>Built deep learning models like CNNs, RNNs, and custom architectures for image and text data.</p>
+  </div>
+
+  <div class="skill-card">
+    <img src="https://pytorch.org/assets/images/pytorch-logo.png" alt="PyTorch" style="height:70px; margin: 0 auto;" />
+    <h4>PyTorch</h4>
+    <p>Used in experimentation and academic research to design and train advanced models.</p>
+  </div>
+
+  <div class="skill-card">
+    <img src="https://img.icons8.com/ios/100/artificial-intelligence.png" alt="Model Variants" />
+    <h4>DL Models</h4>
+    <p>Hands-on experience with CNNs (e.g. VGG, ResNet), UNet, and transfer learning for computer vision tasks.</p>
+  </div>
+
+</div>
+
+<!-- NLP -->
+<h3> Natural Language Processing (NLP)</h3>
+<div class="skills-grid">
+
+  <div class="skill-card">
+    <img src="https://img.icons8.com/ios/100/text.png" alt="Text Analysis" />
+    <h4>NLP Projects</h4>
+    <p>Built text classification, spam detection, sentiment analysis, and chatbot pipelines.</p>
+  </div>
+
+  <div class="skill-card">
+    <img src="https://img.icons8.com/ios-filled/100/artificial-intelligence.png" alt="spaCy & NLTK" style="height:60px; margin: 0 auto;" />
+    <h4>spaCy / NLTK</h4>
+    <p>Used for text preprocessing, tokenization, lemmatization, and named entity recognition.</p>
+  </div>
+
+  <div class="skill-card">
+    <img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg" alt="Transformers" style="height:60px; margin: 0 auto;" />
+    <h4>Transformers (Hugging Face)</h4>
+    <p>Applied BERT, DistilBERT, and other models for tasks like Q&A and sequence classification.</p>
+  </div>
+
+</div>
+
+
+<!-- LLMs & AI Agents -->
+<h3> LLMs & Agents</h3>
+<div class="skills-grid">
+
+  <div class="skill-card">
+    <img src="https://img.icons8.com/ios-filled/100/artificial-intelligence.png" alt="LLMs" />
+    <h4>Working with LLMs</h4>
+    <p>Used models via Hugging Face, Ollama, and OpenAI APIs for tasks like Q&A, chat, and summarization.</p>
+  </div>
+
+  <div class="skill-card">
+    <img src="https://img.icons8.com/ios/100/vector.png" alt="Embeddings & Vector DBs" />
+    <h4>Embeddings & Vector Search</h4>
+    <p>Worked with embeddings and FAISS for semantic search and context-aware responses.</p>
+  </div>
+
+  <div class="skill-card">
+    <img src="https://img.icons8.com/ios/100/robot-2--v1.png" alt="Agents" />
+    <h4>LLM Agents</h4>
+    <p>Explored agentic workflows using LangChain and custom logic to build tool-using intelligent agents.</p>
+  </div>
+
+</div>
+
+
+</section>
+<section id="projects">
+<h2 style="font-size: 2rem; margin-bottom: 16px; color: #00ffc3;"> Highlighted Projects by Domain</h2>
+<p style="margin-bottom: 30px; font-size: 1rem; color: #aaa; line-height: 1.8;">
+  These aren’t just portfolio pieces — they’re stepping stones that shaped my growth from Python scripting to intelligent AI agents. I’ve grouped them by domain to showcase the range of technologies and skills applied over time.
+</p>
+
+<style>
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 2rem;
+    margin-bottom: 60px;
+  }
+  .project-card {
+    background: #111;
+    border: 1px solid #00ffc3;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(0,255,136,0.15);
+    padding: 24px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .project-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0,255,136,0.3);
+  }
+  .project-card img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 16px;
+  }
+  .project-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+    color: #00ffc3;
+  }
+  .project-card p {
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #ccc;
+  }
+  .project-card a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  code {
+    background-color: #1a1a1a;
+    padding: 2px 6px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    color: #00ffc3;
+  }
+</style>
+
+<!--  Data Analysis -->
+<h3 style="margin-top: 60px; font-size: 1.6rem; color: #00ffc3;"> Data Analysis Projects</h3>
+<div class="projects-grid">
+  <div class="project-card">
+    <img src="https://miro.medium.com/v2/resize:fit:1358/1*HjrQtcV6QMnK4Z7SI8r3og.png" alt="SQL Business Analysis Preview">
+    <h3>SQL Business Analysis</h3>
+    <p><strong>Overview:</strong> End-to-end business insight workflow using Python and SQL. Focused on cleaning data, feature engineering, and querying to derive insights.</p>
+    <p><strong>Skills Used:</strong><br><code>Python (Pandas)</code> <code>MySQL</code> <code>Feature Engineering</code></p>
+    <a href="https://github.com/PriiiAiVerse/ANALYSIS_USING_SQL" target="_blank">🔗 View on GitHub</a>
+  </div>
+  <div class="project-card">
+    <img src="https://www.clearpeaks.com/wp-content/uploads/2023/12/Embed-Public-Power-BI-Reports-into-Your-Web-Applications-ClearPeaks-Blog-1-2048x1076.png">
+    <h3>Banking Risk Analytics</h3>
+    <p><strong>Overview:</strong> Financial risk analysis using EDA and Power BI dashboards to detect loan/deposit risks. Addressed real banking case challenges.</p>
+    <p><strong>Skills Used:</strong><br><code>MySQL</code> <code>Python (matplotlib, seaborn)</code> <code>Power BI</code></p>
+    <a href="https://github.com/PriiiAiVerse/Banking-Case-Analysis" target="_blank">🔗 View on GitHub</a>
+  </div>
+</div>
+
+<!--  Software/Backend -->
+<h3 style="margin-top: 60px; font-size: 1.6rem; color: #00ffc3;"> Software Development & Backend</h3>
+<div class="projects-grid">
+  <div class="project-card">
+    <img src="https://5.imimg.com/data5/SB/DJ/MY-12369084/online-bus-booking-software.jpg">
+    <h3>Online Bus Booking System</h3>
+    <p><strong>Overview:</strong> GUI application with real-time scheduling and database handling using Python’s Tkinter and SQLite. My first large-scale application.</p>
+    <p><strong>Skills Used:</strong><br><code>Python (Tkinter)</code> <code>SQLite</code> <code>SQL</code></p>
+    <a href="https://github.com/PriiiAiVerse/Online_Bus_Booking_System" target="_blank">🔗 View on GitHub</a>
+  </div>
+  <div class="project-card">
+    <img src="https://www.linode.com/docs/guides/documenting-a-fastapi-app-with-openapi/example_doc_image_3_hu11288567925805810268.jpg">
+    <h3>FastAPI SQL Backend</h3>
+    <p><strong>Overview:</strong> Asynchronous API with POST/GET endpoints, Pydantic validation, and SQLAlchemy integration with MySQL. Production-ready structure.</p>
+    <p><strong>Skills Used:</strong><br><code>FastAPI</code> <code>SQLAlchemy</code> <code>MySQL</code> <code>Pydantic</code></p>
+    <a href="https://github.com/PriiiAiVerse/FastAPI-SQL-Application" target="_blank">🔗 View on GitHub</a>
+  </div>
+</div>
+
+
+<!--  ML / DL -->
+<h3 style="margin-top: 60px; font-size: 1.6rem; color: #00ffc3;"> Machine Learning & Deep Learning</h3>
+<div class="projects-grid">
+  <div class="project-card">
+    <img src="https://miro.medium.com/v2/resize:fit:4800/format:webp/0*BIJL7Ue0fMQqxd_d" alt="Movie Recommendation Preview">
+    <h3>Movie Recommendation System</h3>
+    <p><strong>Overview:</strong> Built with cosine similarity on text vectors (CountVectorizer). Pulled movie posters via API and used Streamlit for UI deployment.</p>
+    <p><strong>Skills Used:</strong><br><code>NLP</code> <code>cosine_similarity</code> <code>API</code> <code>Streamlit</code></p>
+    <a href="https://github.com/PriiiAiVerse/Movie-Recommendation-using-API" target="_blank">🔗 View on GitHub</a>
+  </div>
+  <div class="project-card">
+    <img src="https://www.researchgate.net/publication/367762346/figure/tbl1/AS:11431281116806455@1675325592117/Autism-facial-images-dataset-splitting-into-3-subsets.png" alt="Autism Detection Preview">
+    <h3>Autism Detection in Children</h3>
+    <p><strong>Overview:</strong> Used VGG16 and InceptionV3 for image classification to detect ASD from facial features. Based on CNN pipelines and transfer learning.</p>
+    <p><strong>Skills Used:</strong><br><code>Deep Learning</code> <code>VGG16</code> <code>InceptionV3</code> <code>Image Classification</code></p>
+    <a href="https://github.com/PriiiAiVerse/Autism-Detection-in-Children" target="_blank">🔗 View on GitHub</a>
+  </div>
+</div>
+
+
+<!--  AI & LLMs -->
+<h3 style="margin-top: 60px; font-size: 1.6rem; color: #00ffc3;"> LLMs & Agentic Systems</h3>
+<div class="projects-grid">
+  <div class="project-card">
+    <img src="https://apmonitor.com/dde/uploads/Main/rag_llm_integration.png" alt="LLM RAG PDF QA Preview">
+    <h3>LLM RAG PDF QA</h3>
+    <p><strong>Overview:</strong> Built a Retrieval-Augmented Generation pipeline over PDFs. Used FAISS to chunk and retrieve, with answers generated by Gemma.</p>
+    <p><strong>Skills Used:</strong><br><code>LangChain</code> <code>FAISS</code> <code>Ollama</code> <code>Embeddings</code></p>
+    <a href="https://github.com/PriiiAiVerse/LLM-RAG-Pipeline" target="_blank">🔗 View on GitHub</a>
+  </div>
+  <div class="project-card">
+    <img src="https://diplo-media.s3.eu-central-1.amazonaws.com/2024/10/mistral-ai-models-1024x504.jpg" alt="Agentic AI Bot Preview">
+    <h3>Agentic AI Bot (Mistral)</h3>
+    <p><strong>Overview:</strong> Multi-agent system for intelligent generation and reasoning using Mistral 7B with prompt planning and minimal resource usage.</p>
+    <p><strong>Skills Used:</strong><br><code>Ollama</code> <code>Mistral 7B</code> <code>LangGraph</code> <code>Prompt Engineering</code></p>
+    <a href="https://github.com/PriiiAiVerse/Agent_Style_Bot" target="_blank">🔗 View on GitHub</a>
+  </div>
+</div>
+
+
+
+
+</section><section id="research">
+  <h2>Research</h2>
+  <div class="research-card">
+    <h3>Autism Spectrum Disorder Detection</h3>
+  
+    <p>Deep learning model using VGG16 to classify Autism Spectrum Disorder (ASD) from image data.</p>
+    <p>Focused on improving early detection accuracy through model fine-tuning and dataset preprocessing.</p>
+    <div class="research-links">
+      <a href="https://www.linkedin.com/posts/jaypee-university-of-engineering-and-technology_jaypeeuniversityguna-congratulations-scopus-activity-7293882228625833985-F-Xv?utm_source=share&utm_medium=member_android" target="_blank">🔗 View LinkedIn Post</a>
+      
+    </div>
+  </div>
+</section>
+
+<section id="resume">
+  <h2>Resume</h2>
+  
+  <p><a href="C:\Users\Dell\OneDrive\Desktop\website\resume\Priti_analyst.pdf" target="_blank" style="color: #00ffc3; text-decoration: none; font-weight: 600;">
+       Download Resume - Data Analyst (PDF)
+    </a>
+  </p>
+
+  <p>
+    <a href="C:\Users\Dell\OneDrive\Desktop\website\resume\Resume_(updated).pdf" style="color: #00ffc3; text-decoration: none; font-weight: 600;">
+       Download Resume - AI/ML Engineer (PDF)
+    </a>
+  </p>
+</section>
+
+<section id="hobbies">
+  <h2>Hobbies</h2>
+  <p>Anime, gaming, building cool things with AI, writing tech blogs, collecting digital art, and exploring the future of consciousness through code </p>
+</section><footer>
+  <p>© 2025 PriiiAiVerse. Built with curiosity & GPUs ⚡</p>
+</footer><script>
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  sections.forEach(section => observer.observe(section));
+</script></body>
+</html>
